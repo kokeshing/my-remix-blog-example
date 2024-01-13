@@ -1,0 +1,8 @@
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "[database_name]"
+database_id = "[database_id]"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "[bucket_name]"

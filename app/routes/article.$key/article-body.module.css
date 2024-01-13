@@ -1,0 +1,136 @@
+.root {
+  width: 100%;
+  margin: 1.2rem auto;
+}
+
+.root > h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.5;
+  outline: 0;
+}
+
+.root > h2 {
+  position: relative;
+  margin-top: 2.3rem;
+  margin-bottom: 1.1rem;
+  font-size: 1.5rem;
+  padding-left: 1.2rem;
+}
+
+.root > h2:before {
+  position: absolute;
+  content: '';
+  top: 0.075rem;
+  left: 0;
+  padding: 0.9rem 0.4rem;
+  background: #3b82f6;
+}
+
+.root > h3 {
+  position: relative;
+  margin-top: 1.2rem;
+  margin-bottom: 1.1rem;
+  font-size: 1.2rem;
+  padding-left: 1.2rem;
+}
+
+.root > h3:before {
+  position: absolute;
+  content: '';
+  top: 0.1rem;
+  left: 0;
+  padding: 0.7rem 0.4rem;
+  background: linear-gradient(to left, #3b82f6 42.5%, transparent 42.5% 57.5%, #3b82f6 57.5%);
+}
+
+.root > p {
+  margin: 0rem;
+  line-height: 1.5;
+  word-break: auto-phrase;
+}
+
+.root > p+p {
+  margin-top: 1.5rem;
+}
+
+.root > div+p {
+  margin-top: 1.5rem;
+}
+
+.root > pre+p {
+  margin-top: 1.5rem;
+}
+
+.root > p > a {
+  color: #1890ff;
+}
+
+.root > p > a:hover {
+  text-decoration: underline;
+}
+
+.root ol, ul {
+  margin: 1.2rem auto;
+  padding: 0;
+}
+
+.root ol>li, ul>li {
+  margin: 0.6rem 0;
+}
+
+.root ul>li {
+  list-style: none;
+  list-style-position: inside;
+  position: relative;
+  padding-left: 1.6em;
+}
+
+.root ul>li:before {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(24, 30, 50, 0.7);
+}
+
+.root pre {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.root code:not([class]) {
+  color: #bf00b0;
+  background-color: #EEE;
+  white-space: pre-wrap;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.root blockquote {
+  padding-top: 0;
+  padding-left: 1.6rem;
+  margin-left: 0;
+  margin-right: 2rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #00000099;
+  font-style: italic;
+  border-left: 0.4rem solid #00000033;
+}
+
+.root table {
+  margin: 1.6rem auto;
+  border-collapse: collapse;
+}
+
+.root th, tr, td {
+  border: 1px #111 solid;
+}
+
+.root audio {
+  margin: 1.2rem auto;
+}

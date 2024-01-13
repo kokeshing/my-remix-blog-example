@@ -1,0 +1,57 @@
+{
+  "name": "remix-blog",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev --manual -c \"npm run start\"",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint . && prettier --write 'app/**/*.{js,jsx,ts,tsx}'",
+    "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
+    "typecheck": "tsc",
+    "deploy": "npm run build && wrangler pages deploy ./public"
+  },
+  "dependencies": {
+    "@remix-run/cloudflare": "^2.4.1",
+    "@remix-run/cloudflare-pages": "^2.4.1",
+    "@remix-run/css-bundle": "^2.4.1",
+    "@remix-run/react": "^2.4.1",
+    "domutils": "^3.1.0",
+    "htmlparser2": "^9.0.0",
+    "isbot": "^3.6.8",
+    "next-ssr": "^0.0.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-share": "^5.0.3",
+    "rehype-katex": "^7.0.0",
+    "rehype-prism-plus": "^1.6.3",
+    "rehype-react": "^8.0.0",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.0.0",
+    "unified": "^11.0.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230518.0",
+    "@remix-run/dev": "^2.4.1",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.10",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.1.0",
+    "wrangler": "^3.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
