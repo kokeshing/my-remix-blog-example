@@ -11,19 +11,13 @@ ACCOUNT_ID = "[account_id]"
 D1_TABLE_ID = "[table_id]"
 
 
-def insert_d1(key, title, abstract, body, date=None):
-    if date is None:
-        payload = {
-            "params": [key, title, abstract, body],
-            "sql": "INSERT INTO articles (key, title, abstract, body) VALUES (?, ?, ?, ?);",
-        }
-    else:
-        now = datetime.datetime.now()
-        updated_at = now.strftime("%Y-%m-%d %H:%M:%S")
-        payload = {
-            "params": [title, abstract, body, updated_at, key],
-            "sql": "UPDATE articles SET title = ?, abstract = ?, body = ?, updated_at = ? WHERE key = ?;",
-        }
+def update_d1(key, title, abstract, body, date=None):
+    now = datetime.datetime.now()
+    updated_at = now.strftime("%Y-%m-%d %H:%M:%S")
+    payload = {
+        "params": [title, abstract, body, updated_at, key],
+        "sql": "UPDATE articles SET title = ?, abstract = ?, body = ?, updated_at = ? WHERE key = ?;",
+    }
 
     headers = {
         "Content-Type": "application/json",
@@ -68,7 +62,7 @@ def main():
     print(f"Abstract: {abstract}")
     print(f"Body: {len(body)}")
     print(f"Date: {date}")
-    insert_d1(key, title, abstract, body, date)
+    update_d1(key, title, abstract, body, date)
 
 
 if __name__ == "__main__":
