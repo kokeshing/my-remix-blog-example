@@ -50,7 +50,7 @@ export function ArticleBody({
                 <LinkCard
                   href={renderToString(
                     props.children.props.children.props.children,
-                  )}
+                  ).trim()}
                 />
               )
             } else if (codeLanguage === 'language-audio') {
