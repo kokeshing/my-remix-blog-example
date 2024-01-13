@@ -5,6 +5,10 @@
 Remix + Cloudflare Pages (Functions) + Cloudflare D1 + Cloudflare R2 のブログシステムの例です。  
 [ここ](https://kokeshing.com)で動かしています。
 
+## 既知の問題
+
+- リンクカードに使うOGP情報が取得されるまでレスポンスがブロックされるため、リンクカードがあるとリンク先からレスポンスが返ってくるまでの時間が純粋にかかるため、ファーストビューの表示が遅くなる
+
 ## How to run
 
 Cloudflareのアカウントが必要です。
