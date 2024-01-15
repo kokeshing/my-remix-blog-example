@@ -48,28 +48,40 @@ export function LinkCard({ href }: { href: string }) {
   )
 
   return data ? (
-    <div className="w-112 my-4 h-32 overflow-hidden rounded-lg border border-gray-300 hover:bg-blue-100">
+    <div className="my-4 h-32 w-full overflow-hidden rounded-lg border border-gray-300 hover:bg-blue-100">
       <a className="no-underline" href={href}>
         <div className="flex h-full w-full items-center justify-between">
-          <div className={`${data.image ? 'w-80' : 'w-96'} h-24 p-2`}>
+          <div
+            className={`${
+              data.image ? 'max-w-2/3 min-w-1/2' : 'w-full'
+            } h-24 p-2`}
+          >
             {data.description ? (
               <>
-                <p className="overflow-hidden whitespace-nowrap font-bold text-black">
+                <p className="line-clamp-1 text-sm font-bold text-black md:text-base">
                   {data.title ?? href}
                 </p>
-                <p className="mt-2 overflow-hidden text-xs text-black">
-                  {data.description.substring(0, 120)}
+                <p className="mt-2 line-clamp-1 text-xs text-black">
+                  {data.description}
+                </p>
+                <p className="mt-3 text-xs text-blue-600">
+                  {new URL(href).hostname}
                 </p>
               </>
             ) : (
-              <p className="overflow-hidden whitespace-nowrap font-bold text-black">
-                {data.title ?? href}
-              </p>
+              <>
+                <p className="line-clamp-1 text-sm font-bold text-black md:text-base">
+                  {data.title ?? href}
+                </p>
+                <p className="mt-3 text-xs text-blue-600">
+                  {new URL(href).hostname}
+                </p>
+              </>
             )}
           </div>
           {data.image && (
             <img
-              className="m-0 block h-auto max-h-full w-auto max-w-full"
+              className="max-w-1/2 m-0 block h-auto max-h-full w-auto"
               alt="ogp画像"
               src={data.image}
             />
