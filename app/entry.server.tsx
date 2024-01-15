@@ -19,6 +19,19 @@ export default async function handleRequest(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext,
 ) {
+  const url = new URL(request.url)
+  const cacheKey = new Request(url.toString(), request)
+  const cache = caches.default
+  const cachedResponse = await cache.match(cacheKey)
+  if (cachedResponse) {
+    // cachedResponseはimmutableなので、headerを変更するために新しいResponseを作成する
+    return new Response(cachedResponse.body, {
+      // キャッシュからのレスポンスかを確認するためのヘッダー（無くても良い）
+      headers: { ...cachedResponse.headers, 'Custom-Cached-Response': 'true' },
+      status: cachedResponse.status,
+    })
+  }
+
   const body = await renderToReadableStream(
     <RemixServer context={remixContext} url={request.url} />,
     {
@@ -36,8 +49,22 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html')
-  return new Response(body, {
+  if (url.pathname === '/') {
+    // 記事一覧のページは30分キャッシュを保持
+    responseHeaders.set('Cache-Control', 'public, maxage=1800')
+  } else {
+    // 他は1日キャッシュを保持
+    responseHeaders.set('Cache-Control', 'public, maxage=86400')
+  }
+  // キャッシュからのレスポンスかを確認するためのヘッダー（無くても良い）
+  responseHeaders.set('Custom-Cached-Response', 'false')
+  const response = new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode,
   })
+
+  // remix.env.d.tsで渡したEventContextを取り出して使う
+  loadContext.ctx.waitUntil(cache.put(cacheKey, response.clone()))
+
+  return response
 }
