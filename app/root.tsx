@@ -17,7 +17,6 @@ import { Footer } from '~/components/footer'
 import { Header } from '~/components/header'
 import globalStyles from '~/global.css'
 import tailwindStyles from '~/tailwind.css'
-import { Env } from '~/types/env'
 import * as gtag from '~/utils/gtags.client'
 
 export const links: LinksFunction = () => [
@@ -27,7 +26,7 @@ export const links: LinksFunction = () => [
 ]
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const gaTrackingId = (context.env as Env).GA_TRACKING_ID ?? ''
+  const gaTrackingId = context.env.GA_TRACKING_ID ?? ''
   return json({ gaTrackingId })
 }
 

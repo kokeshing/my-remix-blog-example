@@ -7,15 +7,13 @@ import { json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import { ArticleHeading } from '~/components/article-heading'
 import { Article } from '~/types/article'
-import { Env } from '~/types/env'
 import { ArticleBody } from './article-body'
 
 export const loader = async ({ context, params }: LoaderFunctionArgs) => {
-  const env = context.env as Env
   const result =
-    env.DB == null
+    context.env.DB == null
       ? null
-      : await env.DB.prepare(`SELECT * FROM articles WHERE key = ?`)
+      : await context.env.DB.prepare(`SELECT * FROM articles WHERE key = ?`)
           .bind(params.key)
           .first<Article>()
 

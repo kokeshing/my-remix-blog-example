@@ -3,7 +3,6 @@ import { json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import { ArticleHeading } from '~/components/article-heading'
 import { Article } from '~/types/article'
-import { Env } from '~/types/env'
 
 export const meta: MetaFunction = () => {
   return [
@@ -26,11 +25,10 @@ export const meta: MetaFunction = () => {
 }
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const env = context.env as Env
   const { results } =
-    env.DB == null
+    context.env.DB == null
       ? { results: null }
-      : await env.DB.prepare(
+      : await context.env.DB.prepare(
           'SELECT * FROM articles ORDER BY id DESC',
         ).all<Article>()
 

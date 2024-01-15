@@ -1,8 +1,6 @@
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
-import type { Env } from '~/types/env'
 
 export async function loader({ context, params }: LoaderFunctionArgs) {
-  const env = context.env as Env
   const { key, ext } = params
 
   const contentType =
@@ -20,7 +18,9 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
   }
 
   const body =
-    env.R2 == null ? null : await env.R2.get(`${key?.replace(':', '/')}${ext}`)
+    context.env.R2 == null
+      ? null
+      : await context.env.R2.get(`${key?.replace(':', '/')}${ext}`)
   if (body == null) {
     return new Response('Not Found', { status: 404 })
   }
